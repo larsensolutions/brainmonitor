@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{813E55F3-4EB3-4EFD-9AC0-3B6932FFAA0E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BrainMonitor</RootNamespace>
+    <AssemblyName>NeuroSky</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="NeuronDotNet.Core">
+      <HintPath>..\NeuralNet\lib\NeuronDotNet.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ThinkGearNET">
+      <HintPath>..\..\ThinkGearNET_1.1\ThinkGearNET.dll</HintPath>
+    </Reference>
+    <Reference Include="ZedGraph">
+      <HintPath>..\NeuralNet\lib\ZedGraph.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Forms\AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\AttentionGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AttentionGraph.Designer.cs">
+      <DependentUpon>AttentionGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\BlinkScenarioGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BlinkScenarioGUI.Designer.cs">
+      <DependentUpon>BlinkScenarioGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GUI.designer.cs">
+      <DependentUpon>GUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SampleGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SampleGraph.Designer.cs">
+      <DependentUpon>SampleGraph.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Snake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\Snake.Designer.cs">
+      <DependentUpon>Snake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LomontFFT.cs" />
+    <Compile Include="MindsetObserver.cs" />
+    <Compile Include="Forms\GenericGUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GenericGUI.Designer.cs">
+      <DependentUpon>GenericGUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NeuralNet.cs" />
+    <Compile Include="Forms\NNSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\NNSetup.Designer.cs">
+      <DependentUpon>NNSetup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="QuckSampleModel.cs" />
+    <Compile Include="SampleModel.cs" />
+    <Compile Include="DiskOperator.cs" />
+    <Compile Include="SnakeModel.cs" />
+    <Compile Include="UserProfile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Forms\AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\AttentionGraph.resx">
+      <DependentUpon>AttentionGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BlinkScenarioGUI.resx">
+      <DependentUpon>BlinkScenarioGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GUI.resx">
+      <DependentUpon>GUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\GenericGUI.resx">
+      <DependentUpon>GenericGUI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\NNSetup.resx">
+      <DependentUpon>NNSetup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SampleGraph.resx">
+      <DependentUpon>SampleGraph.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Snake.resx">
+      <DependentUpon>Snake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="NNTypes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
