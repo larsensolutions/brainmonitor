@@ -7,7 +7,7 @@ using BrainMonitor;
 
 namespace BrainMonitor
 {
-    public class SampleModel : MindsetObserver
+    public class Sample : MindsetObserver
     {
         double[] rawData, fftData, fftAbsData, powerBands;
         private string name, highestBand;
@@ -25,7 +25,7 @@ namespace BrainMonitor
         /// <param name="sampleSize"></param>
         /// <param name="name"></param>
         /// <param name="number"></param>
-        public SampleModel(int sampleSize, string name, int number)
+        public Sample(int sampleSize, string name, int number)
         {
             rawData = new double[sampleSize];
             fftData = new double[sampleSize];
@@ -47,7 +47,7 @@ namespace BrainMonitor
         /// </summary>
         /// <param name="path"></param>
         /// <param name="quick"></param>
-        public SampleModel(String path, bool quick)
+        public Sample(String path, bool quick)
         {
             if (!quick)
             {
@@ -73,7 +73,7 @@ namespace BrainMonitor
         /// used to create spesific sample waves with a defined HZ and amplitude.
         /// </summary>
         /// <param name="sampleSize"></param>
-        public SampleModel(int sampleSize)
+        public Sample(int sampleSize)
         {
             this.sampleSize = sampleSize;
             rawData = new double[sampleSize];
@@ -90,7 +90,7 @@ namespace BrainMonitor
             isSample = true;
         }
 
-        public SampleModel(double[] powers, string name, int number, int att, int med)
+        public Sample(double[] powers, string name, int number, int att, int med)
         {
             sampleSize = 128;
             this.name = name;
@@ -114,11 +114,11 @@ namespace BrainMonitor
 
         public void savePowerSample(string path)
         {
-            DiskOperator.writePowerData(path, getPowerBands, name, number, avg_att,avg_med);
+            IOService.writePowerData(path, getPowerBands, name, number, avg_att,avg_med);
         }
         public void loadPowerSample(string path)
         {
-            DiskOperator.readPowerData(path, out powerBands,out name,out number, out avg_att,out avg_med);
+            IOService.readPowerData(path, out powerBands,out name,out number, out avg_att,out avg_med);
         }
 
         private void make10HZsample()
@@ -206,12 +206,12 @@ namespace BrainMonitor
 
         public void save(string path)
         {
-            DiskOperator.writeAllData(path, rawData, fftData, name, number, sampleSize, avg_att, avg_med);
+            IOService.writeAllData(path, rawData, fftData, name, number, sampleSize, avg_att, avg_med);
         }
 
         private void load(String path)
         {
-            DiskOperator.readAllData(path,out rawData,out fftData,out name, out number,out sampleSize, out avg_att, out avg_med);
+            IOService.readAllData(path,out rawData,out fftData,out name, out number,out sampleSize, out avg_att, out avg_med);
             
         }
 

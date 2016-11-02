@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BrainMonitor
 {
-    class UserProfile
+    class User
     {
 
         private string _firstName;
         private string _lastName;
 
-        public UserProfile(string lastName, string firstName)
+        public User(string lastName, string firstName)
         { 
             this._firstName = firstName;
             this._lastName = lastName;

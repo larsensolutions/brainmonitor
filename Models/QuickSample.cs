@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BrainMonitor
 {
-    class QuickSampleModel
+    class QuickSample
     {
         private double[] powerBands;
         public int att, med;
         public double[] getPowerBands { get { return powerBands; } }
 
-        public QuickSampleModel(double[] powers, int att, int med)
+        public QuickSample(double[] powers, int att, int med)
         {
             this.att = att;
             this.med = med;
@@ -20,11 +20,11 @@ namespace BrainMonitor
             scale();
         }
 
-        public QuickSampleModel(string path)
+        public QuickSample(string path)
         {
             string dummy;
             int dummy1;
-            DiskOperator.readPowerData(path, out powerBands, out dummy, out dummy1, out att, out med);
+            IOService.readPowerData(path, out powerBands, out dummy, out dummy1, out att, out med);
             //scale();
         }
 

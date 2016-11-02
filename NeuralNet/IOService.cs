@@ -12,7 +12,7 @@ namespace BrainMonitor
     /// <summary>
     /// Class for handeling all spesific IO. Save directory is C:\
     /// </summary>
-    public static class DiskOperator
+    public static class IOService
     {
 
         public static void writeAllData(String path, double[] raw, double[] fft, string sn, int number, int sampleNumber, int avg_att, int avg_med)

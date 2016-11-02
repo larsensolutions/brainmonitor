@@ -25,7 +25,7 @@ namespace BrainMonitor
         int x, y;
         private bool mindset = true;
         private bool updateEntireSnakeBody = true;
-        private QuickSampleModel[] quickSampleCollection = null;
+        private QuickSample[] quickSampleCollection = null;
         private bool collectQuicksamples = false;
         private int counter = 0;
         private float cur, prev, bc, bp = 0;
@@ -85,7 +85,7 @@ namespace BrainMonitor
         {
             updateGo(Color.Green);
             counter = 0;
-            quickSampleCollection = new QuickSampleModel[collectionSize];
+            quickSampleCollection = new QuickSample[collectionSize];
             //collectQuicksamples = true;
 
             while (counter < collectionSize)
@@ -96,7 +96,7 @@ namespace BrainMonitor
             collectQuicksamples = false;
             double[] samplePowers = new double[5]; // only using delta, theta, alpha, beta, gamma.
             
-            foreach (QuickSampleModel qsm in quickSampleCollection)
+            foreach (QuickSample qsm in quickSampleCollection)
             {
                 double[] temp = qsm.getPowerBands;
                 samplePowers[0] += temp[0];
@@ -376,7 +376,7 @@ namespace BrainMonitor
             {
                 if (collectQuicksamples && counter < collectionSize)
                 {
-                    quickSampleCollection[counter] = new QuickSampleModel(new double[] { e.ThinkGearState.Delta,
+                    quickSampleCollection[counter] = new QuickSample(new double[] { e.ThinkGearState.Delta,
                     e.ThinkGearState.Theta, e.ThinkGearState.Alpha1 + e.ThinkGearState.Alpha2,
                     e.ThinkGearState.Beta1 + e.ThinkGearState.Beta2, e.ThinkGearState.Gamma1 + 
                     e.ThinkGearState.Gamma2}, (int)e.ThinkGearState.Attention, (int)e.ThinkGearState.Meditation);

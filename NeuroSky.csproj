@@ -93,15 +93,15 @@
     <Compile Include="Forms\Snake.Designer.cs">
       <DependentUpon>Snake.cs</DependentUpon>
     </Compile>
-    <Compile Include="LomontFFT.cs" />
-    <Compile Include="MindsetObserver.cs" />
+    <Compile Include="NeuralNet\LomontFFT.cs" />
+    <Compile Include="NeuralNet\MindsetObserver.cs" />
     <Compile Include="Forms\GenericGUI.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\GenericGUI.Designer.cs">
       <DependentUpon>GenericGUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="NeuralNet.cs" />
+    <Compile Include="NeuralNet\NeuralNet.cs" />
     <Compile Include="Forms\NNSetup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -115,11 +115,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="QuckSampleModel.cs" />
-    <Compile Include="SampleModel.cs" />
-    <Compile Include="DiskOperator.cs" />
-    <Compile Include="SnakeModel.cs" />
-    <Compile Include="UserProfile.cs" />
+    <Compile Include="Models\QuickSample.cs" />
+    <Compile Include="Models\Sample.cs" />
+    <Compile Include="NeuralNet\IOService.cs" />
+    <Compile Include="Models\Snake.cs" />
+    <Compile Include="Models\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Forms\AboutBox.resx">
@@ -151,9 +151,7 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NNTypes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

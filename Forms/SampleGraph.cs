@@ -15,10 +15,10 @@ namespace BrainMonitor
     {
 
         private PointPairList list, list2;
-        private SampleModel sm;
+        private Sample sm;
 
 
-        public SampleGraph(SampleModel sm)
+        public SampleGraph(Sample sm)
         {
             InitializeComponent();
             list = new PointPairList();
@@ -231,7 +231,7 @@ namespace BrainMonitor
 
         public void saveAttentionGraph(String path)
         {
-            DiskOperator.writeScenarioData(path,list, list2, "rendom", 0, 0, 0);
+            IOService.writeScenarioData(path,list, list2, "rendom", 0, 0, 0);
         }
 
         private void Save_Click(object sender, EventArgs e)

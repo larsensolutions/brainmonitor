@@ -34,8 +34,6 @@ namespace BrainMonitor
             isgameOver = false;
             enlarge = false;
             growRate = 50;
-            
-            
         }
 
         public Point[] getDrawableSnake()

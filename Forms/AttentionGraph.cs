@@ -33,7 +33,7 @@ namespace BrainMonitor
         public AttentionGraph(String path)
         {
             InitializeComponent();
-            DiskOperator.readScenarioData(path, out list,out list2,out name,out number, out avg_att, out avg_med);
+            IOService.readScenarioData(path, out list,out list2,out name,out number, out avg_att, out avg_med);
             restored = true;
         }
 
@@ -148,7 +148,7 @@ namespace BrainMonitor
 
         public void saveAttentionGraph(String path)
         {
-            DiskOperator.writeScenarioData(path,list, list2, name, number, avg_att, avg_med);
+            IOService.writeScenarioData(path,list, list2, name, number, avg_att, avg_med);
         }
     }
 }

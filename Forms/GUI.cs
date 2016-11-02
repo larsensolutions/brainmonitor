@@ -23,7 +23,7 @@ namespace BrainMonitor
 		private ThinkGearWrapper _thinkGearWrapper = new ThinkGearWrapper();
         private PointF[] rawData;
         private int sample_length = 128;
-        private SampleModel sample = null;
+        private Sample sample = null;
         private ArrayList sampleQue;
         //private bool take_sample = false;
         private NeuralNet _nn;
@@ -68,7 +68,7 @@ namespace BrainMonitor
             {
                 train_result.Text = ""+0.0;      
                 test_sample_Click(null, null);
-                sample = new SampleModel(128, "", 0);
+                sample = new Sample(128, "", 0);
 
                 return isBlink;
             }
@@ -223,7 +223,7 @@ namespace BrainMonitor
                 e.ThinkGearState.Beta1, e.ThinkGearState.Beta2, e.ThinkGearState.Gamma1, 
                 e.ThinkGearState.Gamma2}, sn, sampleNumber, (int)e.ThinkGearState.Attention, (int)e.ThinkGearState.Meditation));
                         */
-                    sampleQue.Add(new SampleModel(new double[] { e.ThinkGearState.Delta,
+                    sampleQue.Add(new Sample(new double[] { e.ThinkGearState.Delta,
                 e.ThinkGearState.Theta, e.ThinkGearState.Alpha1+ e.ThinkGearState.Alpha2,
                 e.ThinkGearState.Beta1+ e.ThinkGearState.Beta2, e.ThinkGearState.Gamma1+ 
                 e.ThinkGearState.Gamma2}, sn, sampleNumber, (int)e.ThinkGearState.Attention, (int)e.ThinkGearState.Meditation));
@@ -251,7 +251,7 @@ namespace BrainMonitor
 
         #region Panel View
 
-        public void updateSampleView(SampleModel sam){
+        public void updateSampleView(Sample sam){
             this.sample = sam;
             samplePanel.Invalidate();
             fftPanel.Invalidate();
@@ -368,7 +368,7 @@ namespace BrainMonitor
 
         private void open_track_button_Click(object sender, EventArgs e)
         {
-            ag = new AttentionGraph(DiskOperator.SelectTextFile(saveSessionPath));
+            ag = new AttentionGraph(IOService.SelectTextFile(saveSessionPath));
             if (ag.isComplete())
             {
                 ag.CreateChart();
@@ -383,7 +383,7 @@ namespace BrainMonitor
             string sn = sname_tb.Text.Trim();
             sampleNumber = (int)Convert.ToDouble(number_tb.Text.Trim());
             if (sn == "") sn = "default";
-            sampleQue.Add(new SampleModel(sample_length, sn, sampleNumber));
+            sampleQue.Add(new Sample(sample_length, sn, sampleNumber));
             sampleNumber++;
             number_tb.Text = ""+sampleNumber;
             test_sample.Enabled = true;
@@ -392,7 +392,7 @@ namespace BrainMonitor
 
         private void openSample_button_Click(object sender, EventArgs e)
         {
-            sample = new SampleModel(DiskOperator.SelectTextFile(saveSessionPath), false);
+            sample = new Sample(IOService.SelectTextFile(saveSessionPath), false);
             if (sample.isSampleComplete())
             {
                 sname_tb.Text = sample.getName;
@@ -439,7 +439,7 @@ namespace BrainMonitor
 
         private void test_hz_button_Click(object sender, EventArgs e)
         {
-            sample = new SampleModel(128);
+            sample = new Sample(128);
             sample.FFT(true);           
             samplePanel.Invalidate();
             fftPanel.Invalidate();
@@ -454,7 +454,7 @@ namespace BrainMonitor
         {
             testBlink_button.Enabled = false;
             testNoBlink_button.Enabled = false;
-            string[] files = DiskOperator.SelectTextFiles(saveSessionPath);
+            string[] files = IOService.SelectTextFiles(saveSessionPath);
             if (files != null)
             {
 
@@ -480,22 +480,22 @@ namespace BrainMonitor
                 {
                     if (inputType_cb.Checked && !_nnSetup.cb.Checked)
                     {
-                        _nn.addTrainingSet(new SampleModel(f, false).getPowerBands, 1d);
+                        _nn.addTrainingSet(new Sample(f, false).getPowerBands, 1d);
                     }
                     else if (_nnSetup.cb.Checked)
                     {
-                        _nn.addTrainingSet(new SampleModel(f, false).getSpesificPowerBands, 1d);
+                        _nn.addTrainingSet(new Sample(f, false).getSpesificPowerBands, 1d);
                     }
                     else if (_nnSetup.quicksamples_cb.Checked)
                     {
-                        SampleModel g = new SampleModel(f, true);
+                        Sample g = new Sample(f, true);
                         //_nn.addTrainingSet(new double[] { g.getSpesificPowerBands[2], g.getSpesificPowerBands[3] }, 0d);
-                        _nn.addTrainingSet(new SampleModel(f, true).getSpesificPowerBands, 1d);
+                        _nn.addTrainingSet(new Sample(f, true).getSpesificPowerBands, 1d);
                     }
                     else
-                        _nn.addTrainingSet(new SampleModel(f, false).getRawData, 1d);
+                        _nn.addTrainingSet(new Sample(f, false).getRawData, 1d);
                 }
-                string[] files2 = DiskOperator.SelectTextFiles(saveSessionPath);
+                string[] files2 = IOService.SelectTextFiles(saveSessionPath);
                 if (files2 != null)
                 {
                    
@@ -503,20 +503,20 @@ namespace BrainMonitor
                     {
                         if (inputType_cb.Checked && !_nnSetup.cb.Checked)
                         {
-                            _nn.addTrainingSet(new SampleModel(f,false).getPowerBands, 0d);
+                            _nn.addTrainingSet(new Sample(f,false).getPowerBands, 0d);
                         }
                         else if (_nnSetup.cb.Checked)
                         {
-                            _nn.addTrainingSet(new SampleModel(f, false).getSpesificPowerBands, 0d);
+                            _nn.addTrainingSet(new Sample(f, false).getSpesificPowerBands, 0d);
                         }
                         else if (_nnSetup.quicksamples_cb.Checked)
                         {
-                            SampleModel g = new SampleModel(f, true);
+                            Sample g = new Sample(f, true);
                             //_nn.addTrainingSet(new double[] { g.getSpesificPowerBands[2], g.getSpesificPowerBands[3] }, 0d);
-                            _nn.addTrainingSet(new SampleModel(f, true).getSpesificPowerBands, 0d);
+                            _nn.addTrainingSet(new Sample(f, true).getSpesificPowerBands, 0d);
                         }
                         else
-                            _nn.addTrainingSet(new SampleModel(f, false).getRawData, 0d);
+                            _nn.addTrainingSet(new Sample(f, false).getRawData, 0d);
                     }
 
                     _nn.train(progressBar);
@@ -533,7 +533,7 @@ namespace BrainMonitor
 
         private void testBlink_button_Click(object sender, EventArgs e)
         {
-            SampleModel blink = new SampleModel(@"C:\blink1.txt",false);
+            Sample blink = new Sample(@"C:\blink1.txt",false);
             if (inputType_cb.Checked)
             {
                  _nn.Test(train_result, blink.getPowerBands);
@@ -543,7 +543,7 @@ namespace BrainMonitor
 
         private void testNoBlink_button_Click(object sender, EventArgs e)
         {
-            SampleModel noBlink = new SampleModel(@"C:\noblink1.txt",false);
+            Sample noBlink = new Sample(@"C:\noblink1.txt",false);
             if (inputType_cb.Checked)
             {   
                 _nn.Test(train_result, noBlink.getPowerBands);
@@ -577,21 +577,21 @@ namespace BrainMonitor
 
         private void test_set_button_Click(object sender, EventArgs e)
         {
-            String[] test_set = DiskOperator.SelectTextFiles(saveSessionPath);
-            if (test_set.Length>0)
+            String[] testSet = IOService.SelectTextFiles(saveSessionPath);
+            if (testSet != null && testSet.Length>0)
             {
-                double set_size = Convert.ToDouble(test_set.Length);
+                double set_size = Convert.ToDouble(testSet.Length);
                 float correctness = 0.000000f;
-                foreach (String sam in test_set)
+                foreach (String sam in testSet)
                 {
-                    SampleModel t = null;
+                    Sample t = null;
                     if (_nnSetup.quicksamples_cb.Checked)
                     {
-                        t = new SampleModel(sam, true);
+                        t = new Sample(sam, true);
                     }
                     else
                     {
-                        t = new SampleModel(sam, false);
+                        t = new Sample(sam, false);
                     }
                     float temp;
 
@@ -708,7 +708,7 @@ namespace BrainMonitor
 
         private void stat_button_Click(object sender, EventArgs e)
         {
-            String[] test_set = DiskOperator.SelectTextFiles(saveSessionPath);
+            String[] test_set = IOService.SelectTextFiles(saveSessionPath);
             if (test_set != null)
             {
                 double set_size = Convert.ToDouble(test_set.Length);
@@ -721,7 +721,7 @@ namespace BrainMonitor
                 double med = 0;
                 foreach (String sam in test_set)
                 {
-                    QuickSampleModel qsm = new QuickSampleModel(sam);
+                    QuickSample qsm = new QuickSample(sam);
                     delta += qsm.getPowerBands[0];
                     theta += qsm.getPowerBands[1];
                     alpha += qsm.getPowerBands[2];
@@ -732,8 +732,8 @@ namespace BrainMonitor
                 }
                 double total = delta + theta + alpha + beta + gamma;
                 string sn = sname_tb.Text.Trim();
-                DiskOperator.writePowerStatData(saveSessionPath, new double[] { delta, theta, alpha, beta, gamma, total }, att, med, sn);
-                DiskOperator.writePowerStatData(saveSessionPath, new double[] { delta / set_size, theta / set_size, alpha / set_size, beta / set_size, gamma / set_size }, att, med, sn + "scaled");
+                IOService.writePowerStatData(saveSessionPath, new double[] { delta, theta, alpha, beta, gamma, total }, att, med, sn);
+                IOService.writePowerStatData(saveSessionPath, new double[] { delta / set_size, theta / set_size, alpha / set_size, beta / set_size, gamma / set_size }, att, med, sn + "scaled");
             }
         }
 
