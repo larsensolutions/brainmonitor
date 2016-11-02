@@ -30,3 +30,7 @@ between turning the snake left or right, baseline (thinking nothing in particula
 and mental counting. The solution differentiates from other appliances of the NeuroSky
 mindset that it does not require any pre-training for the user, and it is only
 partially real-time.
+
+#contact
+http://larsensolutions.no/
+erik @ larsensolutions.no
