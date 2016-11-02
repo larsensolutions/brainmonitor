@@ -33,4 +33,3 @@ partially real-time.
 
 #contact
 http://larsensolutions.no/
-erik @ larsensolutions.no
