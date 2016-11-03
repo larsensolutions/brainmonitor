@@ -2,7 +2,7 @@
 Program developed as part of my master thesis at NTNU, spring 2011.
 Include dlls in DLLs folder in project as referance when cloned!
 
-Thesis is located in Thesis folder.
+Thesis: https://brage.bibsys.no/xmlui//handle/11250/252472
 # abstract from thesis
 
 Electroencephalography (EEG) equipment are becoming more available on the
